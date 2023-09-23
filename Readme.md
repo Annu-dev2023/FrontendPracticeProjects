@@ -1,1 +1,1 @@
-# This is my Practice Project repo
+# This is my Practice Project repository
