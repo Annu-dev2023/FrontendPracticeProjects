@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Password Generator</title>
+</head>
+<body><div class="container">
+    <h1>A Random Password <br><span>Generator</span> </h1>
+    <div class="display">
+    <input type="text" id="password" placeholder="Password">
+    <img src="images/copy.png" onclick="copyPassword()">
+    </div>
+    <button onclick="createPassword()"><img src="images/magic-wand.png">Generate Password</button>
+</div>
+<!--------------------------------------------------------- Script---------------------------------- -->
+
+<script>
+const passwordBox = document.getElementById("password") // Dom to manipulate
+const lengthh = 12;                                    // assigning value of lengthh to 12 i.e desired length of pw
+const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";       // const varibales used for generating pw
+const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+const number = "0123456789";
+const symbol = "@#$%";
+
+const allChars = upperCase + lowerCase + number + symbol; // now having of them in one variable 
+
+function createPassword() { // function for generating the random pw
+    let password ="";      // empty password so that we can add through random process
+    password += upperCase[Math.floor(Math.random()*upperCase.length)];
+    password += lowerCase[Math.floor(Math.random()*lowerCase.length)];
+    password += number[Math.floor(Math.random()*number.length)];
+    password += symbol[Math.floor(Math.random()*symbol.length)];
+
+    /* In the above lines the math.random() is used to generate random letter or number to the pw
+    and uppercase.length is for the all available data in the varible to work also with the floor we 
+    get round of value accordingly
+    */
+
+while (lengthh > password.length) { // it is used to add until the password reach its desired length
+    password += allChars[Math.floor(Math.random()*allChars.length)];
+}
+passwordBox.value = password; //sets the value of the HTML element with the id "password" to the generated password
+}
+function copyPassword(){        // function to copy the generated pw
+    passwordBox.select();       // html element to select the data of the box
+    document.execCommand('copy');  //  method to execute the "copy" command
+    // alert message!
+    alert("Your password has been copied to clipboard!");
+}
+</script>
+
+
+
+
+</body>
+</html>
